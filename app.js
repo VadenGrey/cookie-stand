@@ -1,5 +1,4 @@
 'use strict' ;
-
 // global variables
 let hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '7pm'];
 let tableHours = ['Locations','6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '7pm', 'Total'];
@@ -24,6 +23,12 @@ let paris = new Location('paris', 20, 38, 2.3);
 let lima = new Location('lima', 2, 16, 4.6);
 
 let locArray = [seattle, tokyo, dubai, paris, lima];
+
+
+//wtf?
+// let x = document.getElementById(locArray[0].locName);
+// console.log(x)
+// x.innerHTML = '<li>thing</li>'
 
 // table header
 document.write('<table><tr>');
