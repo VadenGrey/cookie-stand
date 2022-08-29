@@ -25,13 +25,23 @@ let lima = new Location('lima', 2, 16, 4.6);
 let locArray = [seattle, tokyo, dubai, paris, lima];
 
 
-//wtf?
+// form pushes id into locArray
+
+let getId = document.getElementById('form');
+getId.addEventListener('submit', function (event) {
+  event.preventDefault(); //prevents page refresh
+  console.log("form submitted");
+  locArray.push(new Location(event.target.location_name.value, event.target.low_cust.value, event.target.high_cust.value, event.target.avg_cook.value))
+  
+})
+
+
 // let x = document.getElementById(locArray[0].locName);
 // console.log(x)
 // x.innerHTML = '<li>thing</li>'
 
 // table header
-document.write('<table><tr>');
+document.write('<table id="table"><tr>');
 for (let i = 0; i < tableHours.length; i++) {
   document.write('<th>' + tableHours[i] + '</th>');
 }
