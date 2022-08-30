@@ -30,49 +30,60 @@ let locArray = [seattle, tokyo, dubai, paris, lima];
 let getId = document.getElementById('form');
 getId.addEventListener('submit', function (event) {
   event.preventDefault(); //prevents page refresh
-  console.log("form submitted");
   locArray.push(new Location(event.target.location_name.value, event.target.low_cust.value, event.target.high_cust.value, event.target.avg_cook.value))
   
 })
 
+let tableId = document.getElementById('table');
 
-// let x = document.getElementById(locArray[0].locName);
-// console.log(x)
-// x.innerHTML = '<li>thing</li>'
-
-// table header
-document.write('<table id="table"><tr>');
-for (let i = 0; i < tableHours.length; i++) {
-  document.write('<th>' + tableHours[i] + '</th>');
+// Table header
+for (let i = 0; i < tableHours.length; i++ ) {
+  let tableHead = document.createElement('th');
+  tableId.appendChild(tableHead);
+  tableHead.textContent = tableHours[i];
 }
-// table data
+
+//table data
 for (let i = 0; i < locArray.length; i++) {
-  let total = 0;
-  document.write('</tr><th>'+locArray[i].locName+'</th>');
-  
+  let total = 0
+  let tableHead = document.createElement('th');
+  let tableRow = document.createElement('tr');
+  tableId.appendChild(tableRow);
+  tableId.appendChild(tableHead);
+  tableHead.textContent = locArray[i].locName
+
   for (let j = 0; j < hoursOpen.length; j++) {
     let storedNumb = locArray[i].randNumCust();
     locArray[i].sellStor.push(storedNumb);
-    let addLi = '<td>'+storedNumb+'</td>';
-    document.write(addLi);
+    let tableData = document.createElement('td');
+    tableId.appendChild(tableData);
+    tableData.textContent = storedNumb;
     total += storedNumb;
   }
 
-  let writeTotal = '<td>' + total + '</td>';
+  let tableData = document.createElement('td');
+  tableId.appendChild(tableData);
+  tableData.textContent = total;
   locArray[i].sellStor.push(total);
-  document.write(writeTotal);
 }
-document.write('<tr><th>Totals</th>')
 
 // grand totals
+let tableRow = document.createElement('tr');
+let tableHead = document.createElement('th');
+tableId.appendChild(tableRow);
+tableId.appendChild(tableHead);
+tableHead.textContent = 'Totals';
+
 for (let j = 0; j < 14; j++) {
   let hourTot = 0;
   for (let i = 0; i < locArray.length; i++) {
     hourTot += locArray[i].sellStor[j];
   }
-   document.write('<td>'+hourTot+'</td>')
+  let tableData = document.createElement('td');
+  tableId.appendChild(tableData);
+  tableData.textContent = hourTot;
 }
-document.write('</tr></table>');
+
 
 
 
